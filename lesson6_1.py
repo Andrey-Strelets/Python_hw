@@ -1,19 +1,12 @@
-# student_list = {'Ivanov Ivan':[5, 5, 3, 4,5],
-#                 'Stepanov Stepan':[3, 4, 5, 3, 4],
-#                 'Petrov Petr': [5, 5, 5, 5, 5],
-#                 'Semenov Semen':[3,4,3,3,4]}
+student_list = {'Ivanov Ivan':[5, 5, 3, 4,5],
+                'Stepanov Stepan':[3, 4, 5, 3, 4],
+                'Petrov Petr': [5, 5, 5, 5, 5],
+                'Semenov Semen':[3,4,3,3,4]}
+medium_mark = {key:sum(val)/len(val) for key,val in student_list.items()}
+maxs_mark = max(medium_mark.values())
+min_mark = min(medium_mark.values())
+reversed_list = {value : key for (key, value)in medium_mark.items()}
+print("Самый успешный студент:", reversed_list.get(maxs_mark), "с средним балом =", maxs_mark)
+print("Самый отстающий студент:", reversed_list.get(min_mark), "с средним балом =", min_mark)
 
-# def count_mark(student_list):
-#     for student in student_list:
-#         marks_list = student_list.values()
-#         result =  (sum(marks_list))
 
-# print(count_mark(student_list))
-
-num = 754
-a = num % 10
-b = (num % 100) // 10
-c = num // 100
-print(a)
-print(b)
-print(c)
