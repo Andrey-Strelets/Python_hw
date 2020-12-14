@@ -19,6 +19,6 @@ def convert(size):
 	if key in sizes[input_size]:
 		print(get_size, "size: ", sizes[input_size][get_size])
 	else:
-		print("size is not found"
+		print("size is not found")
 			
 convert(input_size)
