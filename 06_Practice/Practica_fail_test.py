@@ -1,3 +1,4 @@
+
 # Задача 3. Файл-тест. Есть файл, в котором хранятся числа в следующем формате:
 
 # 2 4 5;3 2
@@ -80,26 +81,37 @@
 # if  number_of_flat < kvartir_v_padike:
 # 	nomer_padika = 1
 
+import math
+number = int(input('Введите номер квартиры: '))
+floors = int(input('Введи количество этажей: '))
+flats = int(input('Введи количество квартир на этаже: '))
+entrance = 1
 
+while number > (flats * floors):
+    entrance += 1
+    number -= flats * floors
+
+print("Here is your floor: ", math.ceil(number/flats))
+print("Here is your entrance: ", entrance)
 
 
 # working
-flat_number = int(input('Please enter number flat \n'))
-stages = int(input('Please enter number of stages \n'))
-flat_per_stage = int(input('Please enter of flats in stages\n'))
-def get_coordinates(flat_number, stages, flat_per_stage):
-    flats_per_block = stages * flat_per_stage
-    if flat_number % flats_per_block:
-        target_block = (flat_number // flats_per_block) + 1
-    else:
-        target_block = (flat_number // flats_per_block)
-    temp_flats = flat_number - int(flat_number // flats_per_block) * flats_per_block
-    if temp_flats == 0:
-        return ["Number entrance:", target_block, "Number stage", stages]
-    else:
-        if temp_flats % flat_per_stage:
-            target_stage = temp_flats // flat_per_stage + 1
-        else:
-            target_stage = temp_flats // flat_per_stage
-    return ["Number entrance:", target_block, "Number stage", target_stage]
-print(get_coordinates(flat_number, stages, flat_per_stage))
+# flat_number = int(input('Please enter number flat \n'))
+# stages = int(input('Please enter number of stages \n'))
+# flat_per_stage = int(input('Please enter of flats in stages\n'))
+# def get_coordinates(flat_number, stages, flat_per_stage):
+#     flats_per_block = stages * flat_per_stage
+#     if flat_number % flats_per_block:
+#         target_block = (flat_number // flats_per_block) + 1
+#     else:
+#         target_block = (flat_number // flats_per_block)
+#     temp_flats = flat_number - int(flat_number // flats_per_block) * flats_per_block
+#     if temp_flats == 0:
+#         return ["Number entrance:", target_block, "Number stage", stages]
+#     else:
+#         if temp_flats % flat_per_stage:
+#             target_stage = temp_flats // flat_per_stage + 1
+#         else:
+#             target_stage = temp_flats // flat_per_stage
+#     return ["Number entrance:", target_block, "Number stage", target_stage]
+# print(get_coordinates(flat_number, stages, flat_per_stage))
