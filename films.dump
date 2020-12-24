@@ -1,0 +1,239 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: actor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.actor (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    city character varying(200),
+    birth_date date NOT NULL,
+    small_description character varying(1000)
+);
+
+
+ALTER TABLE public.actor OWNER TO postgres;
+
+--
+-- Name: actor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.actor_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.actor_id_seq OWNER TO postgres;
+
+--
+-- Name: actor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.actor_id_seq OWNED BY public.actor.id;
+
+
+--
+-- Name: director; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.director (
+    id integer NOT NULL,
+    name character varying(255),
+    birth_date date NOT NULL,
+    city character varying(255) NOT NULL,
+    small_description character varying(1000)
+);
+
+
+ALTER TABLE public.director OWNER TO postgres;
+
+--
+-- Name: director_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.director_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.director_id_seq OWNER TO postgres;
+
+--
+-- Name: director_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.director_id_seq OWNED BY public.director.id;
+
+
+--
+-- Name: films; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.films (
+    id integer NOT NULL,
+    name character varying(255),
+    genre character varying(100),
+    year_issue date,
+    country character varying(255),
+    director character varying(255),
+    main_actors text,
+    budget money
+);
+
+
+ALTER TABLE public.films OWNER TO postgres;
+
+--
+-- Name: films_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.films_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.films_id_seq OWNER TO postgres;
+
+--
+-- Name: films_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.films_id_seq OWNED BY public.films.id;
+
+
+--
+-- Name: actor id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actor ALTER COLUMN id SET DEFAULT nextval('public.actor_id_seq'::regclass);
+
+
+--
+-- Name: director id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.director ALTER COLUMN id SET DEFAULT nextval('public.director_id_seq'::regclass);
+
+
+--
+-- Name: films id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.films ALTER COLUMN id SET DEFAULT nextval('public.films_id_seq'::regclass);
+
+
+--
+-- Data for Name: actor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.actor (id, name, city, birth_date, small_description) FROM stdin;
+1	Екатерина Гусева	Москва, Россия	1976-07-09	Российская актриса театра и кино
+3	холли Мери Комбс	Сан-Диего, США	1973-12-03	Амерепнская актриса и продюсер
+4	Михаил Боярский	Ленинград, Россия	1949-12-26	Советский и российский актёр театра и кино, певец, телеведущий
+5	Нелли Уварова	Мажейкяй, Литва	1980-03-14	Российская актриса театра и кино
+\.
+
+
+--
+-- Data for Name: director; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.director (id, name, birth_date, city, small_description) FROM stdin;
+1	Олег Яековский	1944-02-23	Джезказган, Казахстан	Советский, российский актёр театра и кино, режиссёр
+2	Светлана Дружинина	1936-12-16	Москва, Россия	Cоветская и российская актриса, режиссёр, сценарист
+3	Александр Баршак	1978-02-28	Москва, Россия	На его счету более 15 работ в кино.
+\.
+
+
+--
+-- Data for Name: films; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.films (id, name, genre, year_issue, country, director, main_actors, budget) FROM stdin;
+1	1+1	Комедия/Драма	2012-04-26	Франция	Оливье Накаш, Эрик Толедано	Омар Си, Француа Клозе	$11,500,000.00
+2	Не шутите с Зоханом	Комдия/Боевик	2008-10-21	США	Деннис Дуган	Адам Сэндлер, Роб Шнайдер, Лейни Казан	$90,000,000.00
+\.
+
+
+--
+-- Name: actor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.actor_id_seq', 5, true);
+
+
+--
+-- Name: director_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.director_id_seq', 3, true);
+
+
+--
+-- Name: films_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.films_id_seq', 2, true);
+
+
+--
+-- Name: actor actor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actor
+    ADD CONSTRAINT actor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: director director_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.director
+    ADD CONSTRAINT director_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: films films_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.films
+    ADD CONSTRAINT films_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
